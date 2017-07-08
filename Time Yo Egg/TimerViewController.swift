@@ -6,6 +6,7 @@
 //  Copyright © 2017 vince. All rights reserved.
 //
 
+import AVFoundation
 import Cocoa
 
 class TimerViewController: NSViewController
@@ -13,6 +14,7 @@ class TimerViewController: NSViewController
     // MARK: Properties
     private var eggTimer : TheTimer?
     private var prefs : Preferences?
+    fileprivate var soundPlayer: AVAudioPlayer?
     // MARK: Outlets
     @IBOutlet weak var eggTimeTextLabel : NSTextField!
     @IBOutlet weak var eggTimerImageView : NSImageView!
@@ -159,6 +161,7 @@ class TimerViewController: NSViewController
             self.eggTimer?.startTimer()
         }
         self.configureButtonsAndMenus()
+        self.prepareSound()
     }
     
     @IBAction func clickStop(_ sender : Any) {
@@ -181,6 +184,29 @@ extension TimerViewController: TheTimerProtocol
     
     func timerHasFinished(_ timer: TheTimer) {
         self.updateDisplay(for: 0)
+        self.playSound()
     }
 }
 
+extension TimerViewController
+{
+    func prepareSound()
+    {
+        guard let audioFileUrl = NSDataAsset(name: "ding") else {
+            print("Did not find audio file")
+            return
+        }
+        
+        do {
+            self.soundPlayer = try AVAudioPlayer(data: audioFileUrl.data, fileTypeHint: AVFileTypeMPEGLayer3)
+            self.soundPlayer?.prepareToPlay()
+        } catch {
+            print("Sound player not available: \(error)")
+        }
+    }
+    
+    func playSound() {
+        self.soundPlayer?.play()
+    }
+
+}
