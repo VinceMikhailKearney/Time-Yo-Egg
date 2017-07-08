@@ -61,8 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				D8956B0A1F116C5D007D72CE /* Time Yo Egg */,
-				D8956B1C1F116C5D007D72CE /* Time Yo EggTests */,
 				D8956B091F116C5D007D72CE /* Products */,
+				D8956B1C1F116C5D007D72CE /* Time Yo EggTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,13 +78,9 @@
 		D8956B0A1F116C5D007D72CE /* Time Yo Egg */ = {
 			isa = PBXGroup;
 			children = (
-				D8956B3F1F117D15007D72CE /* Time Yo Egg.entitlements */,
 				D8956B0B1F116C5D007D72CE /* AppDelegate.swift */,
-				D8956B0D1F116C5D007D72CE /* TimerViewController.swift */,
-				D8956B0F1F116C5D007D72CE /* Assets.xcassets */,
-				D8956B111F116C5D007D72CE /* Main.storyboard */,
-				D8956B141F116C5D007D72CE /* Info.plist */,
-				D8956B3D1F117881007D72CE /* PreferencesViewController.swift */,
+				D8956B401F117D46007D72CE /* SupportingFiles */,
+				D8956B411F117D4F007D72CE /* UI */,
 			);
 			path = "Time Yo Egg";
 			sourceTree = "<group>";
@@ -96,6 +92,34 @@
 				D8956B1F1F116C5D007D72CE /* Info.plist */,
 			);
 			path = "Time Yo EggTests";
+			sourceTree = "<group>";
+		};
+		D8956B401F117D46007D72CE /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D8956B3F1F117D15007D72CE /* Time Yo Egg.entitlements */,
+				D8956B141F116C5D007D72CE /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		D8956B411F117D4F007D72CE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D8956B0F1F116C5D007D72CE /* Assets.xcassets */,
+				D8956B111F116C5D007D72CE /* Main.storyboard */,
+				D8956B421F117D56007D72CE /* ViewControllers */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D8956B421F117D56007D72CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D8956B3D1F117881007D72CE /* PreferencesViewController.swift */,
+				D8956B0D1F116C5D007D72CE /* TimerViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
