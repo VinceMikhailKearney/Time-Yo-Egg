@@ -51,7 +51,7 @@ class TimerViewController: NSViewController
     
     private func imageToDisplay(for timeRemaining: TimeInterval) -> NSImage?
     {
-        let percentageComplete = 100 - (timeRemaining / 360 * 100)
+        let percentageComplete = 100 - (timeRemaining / Preferences().selectedTime * 100)
         
         if self.eggTimer!.isStopped {
             let stoppedImageName = (timeRemaining == 0) ? "100" : "stopped"
@@ -111,7 +111,7 @@ class TimerViewController: NSViewController
         if self.eggTimer!.isPaused {
             self.eggTimer?.resumeTimer()
         } else {
-            self.eggTimer?.duration = 360
+            self.eggTimer?.duration = Preferences().selectedTime
             self.eggTimer?.startTimer()
         }
         self.configureButtonsAndMenus()
@@ -124,7 +124,7 @@ class TimerViewController: NSViewController
     
     @IBAction func clickRestart(_ sender : Any) {
         self.eggTimer?.resetTimer()
-        self.updateDisplay(for: 360)
+        self.updateDisplay(for: Preferences().selectedTime)
         self.configureButtonsAndMenus()
     }
 }
