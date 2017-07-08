@@ -13,6 +13,7 @@
 		D8956B131F116C5D007D72CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8956B111F116C5D007D72CE /* Main.storyboard */; };
 		D8956B1E1F116C5D007D72CE /* Time_Yo_EggTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B1D1F116C5D007D72CE /* Time_Yo_EggTests.swift */; };
 		D8956B3C1F1176F2007D72CE /* egg-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8956B3B1F1176F2007D72CE /* egg-icon.png */; };
+		D8956B3E1F117881007D72CE /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B3D1F117881007D72CE /* PreferencesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		D8956B1D1F116C5D007D72CE /* Time_Yo_EggTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_Yo_EggTests.swift; sourceTree = "<group>"; };
 		D8956B1F1F116C5D007D72CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8956B3B1F1176F2007D72CE /* egg-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "egg-icon.png"; sourceTree = "<group>"; };
+		D8956B3D1F117881007D72CE /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				D8956B0F1F116C5D007D72CE /* Assets.xcassets */,
 				D8956B111F116C5D007D72CE /* Main.storyboard */,
 				D8956B141F116C5D007D72CE /* Info.plist */,
+				D8956B3D1F117881007D72CE /* PreferencesViewController.swift */,
 			);
 			path = "Time Yo Egg";
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			files = (
 				D8956B0E1F116C5D007D72CE /* TimerViewController.swift in Sources */,
 				D8956B0C1F116C5D007D72CE /* AppDelegate.swift in Sources */,
+				D8956B3E1F117881007D72CE /* PreferencesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
