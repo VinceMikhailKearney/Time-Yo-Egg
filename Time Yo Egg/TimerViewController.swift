@@ -12,6 +12,7 @@ class TimerViewController: NSViewController
 {
     // MARK: Properties
     private var eggTimer : TheTimer?
+    private var prefs : Preferences?
     // MARK: Outlets
     @IBOutlet weak var eggTimeTextLabel : NSTextField!
     @IBOutlet weak var eggTimerImageView : NSImageView!
@@ -21,8 +22,10 @@ class TimerViewController: NSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.prefs = Preferences()
         self.eggTimer = TheTimer()
         self.eggTimer?.delegate = self
+        self.setupPrefs()
     }
 
     /// TODO - Need to figure out what this is exactly
@@ -33,11 +36,52 @@ class TimerViewController: NSViewController
         }
     }
     
+    // MARK: Preferences
+    
+    func setupPrefs()
+    {
+        self.updateDisplay(for: self.prefs!.selectedTime)
+        
+        let notificationName = Notification.Name(rawValue: "PrefsChanged")
+        NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil)
+        { (notification) in
+            self.checkForResetAfterPrefsChange()
+        }
+    }
+    
+    func updateFromPrefs() {
+        self.eggTimer?.duration = self.prefs!.selectedTime
+        self.clickRestart(self)
+    }
+    
+    func checkForResetAfterPrefsChange()
+    {
+        if self.eggTimer!.isStopped || self.eggTimer!.isPaused
+        {
+            self.updateFromPrefs()
+        }
+        else
+        {
+            let alert = NSAlert()
+            alert.messageText = "Reset timer with the new settings?"
+            alert.informativeText = "This will stop your current timer!"
+            alert.alertStyle = .warning
+            
+            alert.addButton(withTitle: "Reset")
+            alert.addButton(withTitle: "Cancel")
+            
+            let response = alert.runModal()
+            if response == NSAlertFirstButtonReturn {
+                self.updateFromPrefs()
+            }
+        }
+    }
+    
     // MARK: Display
     
     func updateDisplay(for timeRemaining: TimeInterval) {
-        eggTimeTextLabel.stringValue = textToDisplay(for: timeRemaining)
-        eggTimerImageView.image = imageToDisplay(for: timeRemaining)
+        self.eggTimeTextLabel.stringValue = textToDisplay(for: timeRemaining)
+        self.eggTimerImageView.image = imageToDisplay(for: timeRemaining)
     }
     
     private func textToDisplay(for timeRemaining: TimeInterval) -> String
@@ -51,7 +95,7 @@ class TimerViewController: NSViewController
     
     private func imageToDisplay(for timeRemaining: TimeInterval) -> NSImage?
     {
-        let percentageComplete = 100 - (timeRemaining / Preferences().selectedTime * 100)
+        let percentageComplete = 100 - (timeRemaining / self.prefs!.selectedTime * 100)
         
         if self.eggTimer!.isStopped {
             let stoppedImageName = (timeRemaining == 0) ? "100" : "stopped"
@@ -96,9 +140,9 @@ class TimerViewController: NSViewController
             enableReset = false
         }
         
-        startButton.isEnabled = enableStart
-        stopButton.isEnabled = enableStop
-        restartButton.isEnabled = enableReset
+        self.startButton.isEnabled = enableStart
+        self.stopButton.isEnabled = enableStop
+        self.restartButton.isEnabled = enableReset
         
         if let appDel = NSApplication.shared().delegate as? AppDelegate {
             appDel.enableMenus(start: enableStart, stop: enableStop, reset: enableReset)
@@ -111,7 +155,7 @@ class TimerViewController: NSViewController
         if self.eggTimer!.isPaused {
             self.eggTimer?.resumeTimer()
         } else {
-            self.eggTimer?.duration = Preferences().selectedTime
+            self.eggTimer?.duration = self.prefs!.selectedTime
             self.eggTimer?.startTimer()
         }
         self.configureButtonsAndMenus()
@@ -124,7 +168,7 @@ class TimerViewController: NSViewController
     
     @IBAction func clickRestart(_ sender : Any) {
         self.eggTimer?.resetTimer()
-        self.updateDisplay(for: Preferences().selectedTime)
+        self.updateDisplay(for: self.prefs!.selectedTime)
         self.configureButtonsAndMenus()
     }
 }
@@ -132,11 +176,11 @@ class TimerViewController: NSViewController
 extension TimerViewController: TheTimerProtocol
 {
     func timeRemainingOnTimer(_ timer: TheTimer, timeRemaining: TimeInterval) {
-        updateDisplay(for: timeRemaining)
+        self.updateDisplay(for: timeRemaining)
     }
     
     func timerHasFinished(_ timer: TheTimer) {
-        updateDisplay(for: 0)
+        self.updateDisplay(for: 0)
     }
 }
 
