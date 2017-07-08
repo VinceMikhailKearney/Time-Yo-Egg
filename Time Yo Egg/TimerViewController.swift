@@ -185,6 +185,9 @@ extension TimerViewController: TheTimerProtocol
     func timerHasFinished(_ timer: TheTimer) {
         self.updateDisplay(for: 0)
         self.playSound()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            self.clickRestart(self)
+        }
     }
 }
 
