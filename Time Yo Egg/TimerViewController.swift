@@ -32,15 +32,15 @@ class TimerViewController: NSViewController
     
     // MARK: Actions
     @IBAction func clickStart(_ sender : Any) {
-        
+        print("Clicked the start button")
     }
     
     @IBAction func clickStop(_ sender : Any) {
-        
+        print("Clicked the stop button")
     }
     
     @IBAction func clickRestart(_ sender : Any) {
-        
+        print("Clicked the restart button")
     }
 }
 

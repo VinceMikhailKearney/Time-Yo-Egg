@@ -11,6 +11,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate
 {
+    // MARK: Properties
+    @IBOutlet weak var startMenuItem: NSMenuItem!
+    @IBOutlet weak var restartMenuItem: NSMenuItem!
+    @IBOutlet weak var stopMenuItem: NSMenuItem!
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }

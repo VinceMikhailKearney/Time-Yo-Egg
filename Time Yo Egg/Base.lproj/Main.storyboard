@@ -57,6 +57,28 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Timer" id="Gqx-qr-ybq">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Timer" autoenablesItems="NO" id="nHC-Hy-5JD">
+                                    <items>
+                                        <menuItem title="Start" keyEquivalent="s" id="28m-eo-utF">
+                                            <connections>
+                                                <action selector="clickStart:" target="Ady-hI-5gd" id="T0B-4j-Ee8"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reset" keyEquivalent="r" id="Gpu-bh-SeV">
+                                            <connections>
+                                                <action selector="clickRestart:" target="Ady-hI-5gd" id="9BB-ek-kiJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Stop" keyEquivalent="x" id="Ugn-FW-ylT">
+                                            <connections>
+                                                <action selector="clickStop:" target="Ady-hI-5gd" id="pwF-LL-Bbs"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -100,7 +122,13 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Time_Yo_Egg" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Time_Yo_Egg" customModuleProvider="target">
+                    <connections>
+                        <outlet property="restartMenuItem" destination="Gpu-bh-SeV" id="UjI-iA-26q"/>
+                        <outlet property="startMenuItem" destination="28m-eo-utF" id="npM-iX-Cgh"/>
+                        <outlet property="stopMenuItem" destination="Ugn-FW-ylT" id="ZY5-ab-Yym"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
