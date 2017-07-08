@@ -13,6 +13,7 @@
 		D8956B131F116C5D007D72CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8956B111F116C5D007D72CE /* Main.storyboard */; };
 		D8956B1E1F116C5D007D72CE /* Time_Yo_EggTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B1D1F116C5D007D72CE /* Time_Yo_EggTests.swift */; };
 		D8956B3E1F117881007D72CE /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B3D1F117881007D72CE /* PreferencesViewController.swift */; };
+		D8956B441F117EA4007D72CE /* TheTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B431F117EA4007D72CE /* TheTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		D8956B1F1F116C5D007D72CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8956B3D1F117881007D72CE /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		D8956B3F1F117D15007D72CE /* Time Yo Egg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Time Yo Egg.entitlements"; sourceTree = "<group>"; };
+		D8956B431F117EA4007D72CE /* TheTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheTimer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				D8956B0B1F116C5D007D72CE /* AppDelegate.swift */,
+				D8956B431F117EA4007D72CE /* TheTimer.swift */,
 				D8956B401F117D46007D72CE /* SupportingFiles */,
 				D8956B411F117D4F007D72CE /* UI */,
 			);
@@ -234,6 +237,7 @@
 				D8956B0E1F116C5D007D72CE /* TimerViewController.swift in Sources */,
 				D8956B0C1F116C5D007D72CE /* AppDelegate.swift in Sources */,
 				D8956B3E1F117881007D72CE /* PreferencesViewController.swift in Sources */,
+				D8956B441F117EA4007D72CE /* TheTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
