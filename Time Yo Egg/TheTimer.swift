@@ -16,7 +16,7 @@ protocol TheTimerProtocol {
 class TheTimer
 {
     // MARK: Properties
-    var timer: Timer? = nil
+    var timer: Timer?
     var startTime: Date?
     var duration: TimeInterval = 0
     var elapsedTime: TimeInterval = 0
@@ -32,12 +32,10 @@ class TheTimer
         elapsedTime = -startTime.timeIntervalSinceNow
         let secondsRemaining = (duration - elapsedTime).rounded()
         
-        if secondsRemaining <= 0
-        {
+        if secondsRemaining <= 0 {
             resetTimer()
             delegate?.timerHasFinished(self)
-        }
-        else {
+        } else {
             delegate?.timeRemainingOnTimer(self, timeRemaining: secondsRemaining)
         }
     }
@@ -62,11 +60,9 @@ class TheTimer
         self.setUpTimer()
     }
     
-    func stopTimer()
-    {
+    func stopTimer() {
         timer?.invalidate()
         timer = nil
-        
         timerAction()
     }
     
