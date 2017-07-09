@@ -12,15 +12,8 @@ import Cocoa
 class AudioManager: NSObject
 {
     // MARK: Properties
-    private static var audioManager : AudioManager?
+    public static let sharedInstance : AudioManager = AudioManager()
     private var player : AVAudioPlayer?
-    
-    public static func sharedInstance() -> AudioManager {
-        if self.audioManager == nil {
-            self.audioManager = AudioManager()
-        }
-        return self.audioManager!
-    }
     
     public func prepareSound()
     {

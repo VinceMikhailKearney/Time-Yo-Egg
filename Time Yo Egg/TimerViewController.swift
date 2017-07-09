@@ -149,7 +149,7 @@ class TimerViewController: NSViewController
             self.eggTimer?.startTimer()
         }
         self.configureButtonsAndMenus()
-        AudioManager.sharedInstance().prepareSound()
+        AudioManager.sharedInstance.prepareSound()
     }
     
     @IBAction func clickStop(_ sender : Any) {
@@ -172,7 +172,7 @@ extension TimerViewController: TheTimerProtocol
     
     func timerHasFinished(_ timer: TheTimer) {
         self.updateDisplay(forTime: 0)
-        AudioManager.sharedInstance().play()
+        AudioManager.sharedInstance.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { self.clickRestart(self) }
     }
 }
