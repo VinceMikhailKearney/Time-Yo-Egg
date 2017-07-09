@@ -14,6 +14,7 @@
 		D8956B1E1F116C5D007D72CE /* Time_Yo_EggTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B1D1F116C5D007D72CE /* Time_Yo_EggTests.swift */; };
 		D8956B3E1F117881007D72CE /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B3D1F117881007D72CE /* PreferencesViewController.swift */; };
 		D8956B441F117EA4007D72CE /* TheTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8956B431F117EA4007D72CE /* TheTimer.swift */; };
+		D8A89AEC1F1243DD000DA55C /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A89AEB1F1243DD000DA55C /* Notifications.swift */; };
 		D8BA12861F1188F60010AED9 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BA12851F1188F60010AED9 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		D8956B3D1F117881007D72CE /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		D8956B3F1F117D15007D72CE /* Time Yo Egg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Time Yo Egg.entitlements"; sourceTree = "<group>"; };
 		D8956B431F117EA4007D72CE /* TheTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheTimer.swift; sourceTree = "<group>"; };
+		D8A89AEB1F1243DD000DA55C /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		D8BA12851F1188F60010AED9 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				D8956B0B1F116C5D007D72CE /* AppDelegate.swift */,
+				D8A89AEB1F1243DD000DA55C /* Notifications.swift */,
 				D8BA12851F1188F60010AED9 /* Preferences.swift */,
 				D8956B431F117EA4007D72CE /* TheTimer.swift */,
 				D8956B401F117D46007D72CE /* SupportingFiles */,
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A89AEC1F1243DD000DA55C /* Notifications.swift in Sources */,
 				D8956B0E1F116C5D007D72CE /* TimerViewController.swift in Sources */,
 				D8956B0C1F116C5D007D72CE /* AppDelegate.swift in Sources */,
 				D8BA12861F1188F60010AED9 /* Preferences.swift in Sources */,

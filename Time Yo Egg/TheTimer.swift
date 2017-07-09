@@ -18,7 +18,7 @@ class TheTimer
     // MARK: Properties
     var timer: Timer? = nil
     var startTime: Date?
-    var duration: TimeInterval = 360
+    var duration: TimeInterval = 0
     var elapsedTime: TimeInterval = 0
     var delegate: TheTimerProtocol?
     // MARK: Computed Properties
@@ -76,7 +76,7 @@ class TheTimer
         timer = nil
         
         startTime = nil
-        duration = 360
+        duration = 0
         elapsedTime = 0
         
         timerAction()

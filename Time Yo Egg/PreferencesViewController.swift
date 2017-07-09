@@ -45,21 +45,18 @@ class PreferencesViewController: NSViewController
     
     func showSliderValueAsText() {
         let newTimerDuration = self.slider.integerValue
-        let minutesDescription = (newTimerDuration == 1) ? "minute" : "minutes"
-        self.eggTimeTextField.stringValue = "\(newTimerDuration) \(minutesDescription)"
+        self.eggTimeTextField.stringValue = "\(newTimerDuration) \((newTimerDuration == 1) ? "minute" : "minutes")"
     }
     
     func saveNewPrefs() {
         self.prefs!.selectedTime = self.slider.doubleValue * 60
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "PrefsChanged"),
-                                        object: nil)
+        NotificationCenter.default.post(name: Notifications.prefsChanged, object: nil)
     }
     
     // MARK: Actions
-    @IBAction func popUpValueChanged(_ sender: AnyObject)
+    @IBAction func popUpValueChanged(_ sender: NSPopUpButton)
     {
-        /// TODO - Why 2 '?'
-        if sender.selectedItem??.title == "Custom" {
+        if sender.selectedItem?.title == "Custom" {
             self.slider.isEnabled = true
             return
         }

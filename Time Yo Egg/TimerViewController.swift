@@ -22,7 +22,8 @@ class TimerViewController: NSViewController
     @IBOutlet weak var stopButton : NSButton!
     @IBOutlet weak var restartButton : NSButton!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         self.prefs = Preferences()
         self.eggTimer = TheTimer()
@@ -31,21 +32,16 @@ class TimerViewController: NSViewController
     }
 
     /// TODO - Need to figure out what this is exactly
-    override var representedObject: Any?
-    {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    override var representedObject: Any? {
+        didSet { /*Update the view, if already loaded.*/ }
     }
     
     // MARK: Preferences
     
     func setupPrefs()
     {
-        self.updateDisplay(for: self.prefs!.selectedTime)
-        
-        let notificationName = Notification.Name(rawValue: "PrefsChanged")
-        NotificationCenter.default.addObserver(forName: notificationName, object: nil, queue: nil)
+        self.updateDisplay(forTime: self.prefs!.selectedTime)
+        NotificationCenter.default.addObserver(forName: Notifications.prefsChanged, object: nil, queue: nil)
         { (notification) in
             self.checkForResetAfterPrefsChange()
         }
@@ -72,16 +68,13 @@ class TimerViewController: NSViewController
             alert.addButton(withTitle: "Reset")
             alert.addButton(withTitle: "Cancel")
             
-            let response = alert.runModal()
-            if response == NSAlertFirstButtonReturn {
-                self.updateFromPrefs()
-            }
+            if alert.runModal() == NSAlertFirstButtonReturn { self.updateFromPrefs() }
         }
     }
     
     // MARK: Display
     
-    func updateDisplay(for timeRemaining: TimeInterval) {
+    func updateDisplay(forTime timeRemaining: TimeInterval) {
         self.eggTimeTextLabel.stringValue = textToDisplay(for: timeRemaining)
         self.eggTimerImageView.image = imageToDisplay(for: timeRemaining)
     }
@@ -100,8 +93,7 @@ class TimerViewController: NSViewController
         let percentageComplete = 100 - (timeRemaining / self.prefs!.selectedTime * 100)
         
         if self.eggTimer!.isStopped {
-            let stoppedImageName = (timeRemaining == 0) ? "100" : "stopped"
-            return NSImage(named: stoppedImageName)
+            return NSImage(named: (timeRemaining == 0) ? "100" : "stopped")
         }
         
         let imageName: String
@@ -171,7 +163,7 @@ class TimerViewController: NSViewController
     
     @IBAction func clickRestart(_ sender : Any) {
         self.eggTimer?.resetTimer()
-        self.updateDisplay(for: self.prefs!.selectedTime)
+        self.updateDisplay(forTime: self.prefs!.selectedTime)
         self.configureButtonsAndMenus()
     }
 }
@@ -179,15 +171,13 @@ class TimerViewController: NSViewController
 extension TimerViewController: TheTimerProtocol
 {
     func timeRemainingOnTimer(_ timer: TheTimer, timeRemaining: TimeInterval) {
-        self.updateDisplay(for: timeRemaining)
+        self.updateDisplay(forTime: timeRemaining)
     }
     
     func timerHasFinished(_ timer: TheTimer) {
-        self.updateDisplay(for: 0)
-        self.playSound()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            self.clickRestart(self)
-        }
+        self.updateDisplay(forTime: 0)
+        self.soundPlayer?.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { self.clickRestart(self) }
     }
 }
 
@@ -207,9 +197,4 @@ extension TimerViewController
             print("Sound player not available: \(error)")
         }
     }
-    
-    func playSound() {
-        self.soundPlayer?.play()
-    }
-
 }
