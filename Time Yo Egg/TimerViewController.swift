@@ -6,15 +6,12 @@
 //  Copyright © 2017 vince. All rights reserved.
 //
 
-import AVFoundation
 import Cocoa
 
 class TimerViewController: NSViewController
 {
     // MARK: Properties
     private var eggTimer : TheTimer?
-    private var prefs : Preferences?
-    fileprivate var soundPlayer: AVAudioPlayer?
     // MARK: Outlets
     @IBOutlet weak var eggTimeTextLabel : NSTextField!
     @IBOutlet weak var eggTimerImageView : NSImageView!
@@ -25,7 +22,6 @@ class TimerViewController: NSViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.prefs = Preferences()
         self.eggTimer = TheTimer()
         self.eggTimer?.delegate = self
         self.setupPrefs()
@@ -40,7 +36,7 @@ class TimerViewController: NSViewController
     
     func setupPrefs()
     {
-        self.updateDisplay(forTime: self.prefs!.selectedTime)
+        self.updateDisplay(forTime: Preferences.selectedTime)
         NotificationCenter.default.addObserver(forName: Notifications.prefsChanged, object: nil, queue: nil)
         { (notification) in
             self.checkForResetAfterPrefsChange()
@@ -48,7 +44,7 @@ class TimerViewController: NSViewController
     }
     
     func updateFromPrefs() {
-        self.eggTimer?.duration = self.prefs!.selectedTime
+        self.eggTimer?.duration = Preferences.selectedTime
         self.clickRestart(self)
     }
     
@@ -90,7 +86,7 @@ class TimerViewController: NSViewController
     
     private func imageToDisplay(for timeRemaining: TimeInterval) -> NSImage?
     {
-        let percentageComplete = 100 - (timeRemaining / self.prefs!.selectedTime * 100)
+        let percentageComplete = 100 - (timeRemaining / Preferences.selectedTime * 100)
         
         if self.eggTimer!.isStopped {
             return NSImage(named: (timeRemaining == 0) ? "100" : "stopped")
@@ -149,11 +145,11 @@ class TimerViewController: NSViewController
         if self.eggTimer!.isPaused {
             self.eggTimer?.resumeTimer()
         } else {
-            self.eggTimer?.duration = self.prefs!.selectedTime
+            self.eggTimer?.duration = Preferences.selectedTime
             self.eggTimer?.startTimer()
         }
         self.configureButtonsAndMenus()
-        self.prepareSound()
+        AudioManager.sharedInstance().prepareSound()
     }
     
     @IBAction func clickStop(_ sender : Any) {
@@ -163,7 +159,7 @@ class TimerViewController: NSViewController
     
     @IBAction func clickRestart(_ sender : Any) {
         self.eggTimer?.resetTimer()
-        self.updateDisplay(forTime: self.prefs!.selectedTime)
+        self.updateDisplay(forTime: Preferences.selectedTime)
         self.configureButtonsAndMenus()
     }
 }
@@ -176,25 +172,7 @@ extension TimerViewController: TheTimerProtocol
     
     func timerHasFinished(_ timer: TheTimer) {
         self.updateDisplay(forTime: 0)
-        self.soundPlayer?.play()
+        AudioManager.sharedInstance().play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) { self.clickRestart(self) }
-    }
-}
-
-extension TimerViewController
-{
-    func prepareSound()
-    {
-        guard let audioFileUrl = NSDataAsset(name: "ding") else {
-            print("Did not find audio file")
-            return
-        }
-        
-        do {
-            self.soundPlayer = try AVAudioPlayer(data: audioFileUrl.data, fileTypeHint: AVFileTypeMPEGLayer3)
-            self.soundPlayer?.prepareToPlay()
-        } catch {
-            print("Sound player not available: \(error)")
-        }
     }
 }

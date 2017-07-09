@@ -10,8 +10,6 @@ import Cocoa
 
 class PreferencesViewController: NSViewController
 {
-    // MARK: Properties
-    private var prefs : Preferences?
     // MARK: Outlets
     @IBOutlet weak var popUp: NSPopUpButton!
     @IBOutlet weak var slider: NSSlider!
@@ -19,13 +17,12 @@ class PreferencesViewController: NSViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.prefs = Preferences()
         self.showExistingPrefs()
     }
     
     func showExistingPrefs()
     {
-        let selectedTimeInMinutes = Int(self.prefs!.selectedTime) / 60
+        let selectedTimeInMinutes = Int(Preferences.selectedTime) / 60
         
         self.popUp.selectItem(withTitle: "Custom")
         self.slider.isEnabled = true
@@ -49,7 +46,7 @@ class PreferencesViewController: NSViewController
     }
     
     func saveNewPrefs() {
-        self.prefs!.selectedTime = self.slider.doubleValue * 60
+        Preferences.selectedTime = self.slider.doubleValue * 60
         NotificationCenter.default.post(name: Notifications.prefsChanged, object: nil)
     }
     
