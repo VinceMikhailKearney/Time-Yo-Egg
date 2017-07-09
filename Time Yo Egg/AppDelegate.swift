@@ -26,8 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate
     
     func enableMenus(start: Bool, stop: Bool, reset: Bool) {
         startMenuItem.isEnabled = start
-        restartMenuItem.isEnabled = stop
-        stopMenuItem.isEnabled = reset
+        restartMenuItem.isEnabled = reset
+        stopMenuItem.isEnabled = stop
     }
 }
 
