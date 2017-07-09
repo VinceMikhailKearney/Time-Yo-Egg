@@ -10,15 +10,17 @@ import Cocoa
 
 struct Preferences
 {
+    static let selectedTimeKey : String = "selectedTime"
+    
     static var selectedTime: TimeInterval
     {
         get {
-            let savedTime = UserDefaults.standard.double(forKey: "selectedTime")
+            let savedTime = UserDefaults.standard.double(forKey: selectedTimeKey)
             if savedTime > 0 { return savedTime }
             return 240
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "selectedTime")
+            UserDefaults.standard.set(newValue, forKey: selectedTimeKey)
         }
     }
 }
