@@ -23,7 +23,7 @@ class AudioManager: NSObject
         }
         
         do {
-            self.player = try AVAudioPlayer(data: audioFileUrl.data, fileTypeHint: AVFileTypeMPEGLayer3)
+            self.player = try AVAudioPlayer(data: audioFileUrl.data, fileTypeHint: AVFileType.mp3.rawValue)
             self.player?.prepareToPlay()
         } catch {
             print("Sound player not available: \(error)")

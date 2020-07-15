@@ -25,7 +25,7 @@ class TheTimer
     var isStopped: Bool { return timer == nil && elapsedTime == 0 }
     var isPaused: Bool { return timer == nil && elapsedTime > 0 }
     
-    dynamic func timerAction()
+    @objc dynamic func timerAction()
     {
         guard let startTime = startTime else { return }
         

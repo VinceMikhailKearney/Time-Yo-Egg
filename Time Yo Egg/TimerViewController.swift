@@ -64,7 +64,7 @@ class TimerViewController: NSViewController
             alert.addButton(withTitle: "Reset")
             alert.addButton(withTitle: "Cancel")
             
-            if alert.runModal() == NSAlertFirstButtonReturn { self.updateFromPrefs() }
+            if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn { self.updateFromPrefs() }
         }
     }
     
@@ -134,7 +134,7 @@ class TimerViewController: NSViewController
         self.stopButton.isEnabled = enableStop
         self.restartButton.isEnabled = enableReset
         
-        if let appDel = NSApplication.shared().delegate as? AppDelegate {
+        if let appDel = NSApplication.shared.delegate as? AppDelegate {
             appDel.enableMenus(start: enableStart, stop: enableStop, reset: enableReset)
         }
     }
